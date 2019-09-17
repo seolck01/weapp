@@ -39,10 +39,10 @@ const CONF = {
 
     // 微信登录态有效期
     wxLoginExpires: 7200,
- 
+
     // 其他配置 ...
-    serverHost: 'www.liuchaoqun.top',//以下配置可以留空不填 但是参数一定要有 否则会报错
-    tunnelServerUrl: '',//腾讯云信道服务地址 很多文档里写的地址打开直接404
+    serverHost: 'www.liuchaoqun.top', // 以下配置可以留空不填 但是参数一定要有 否则会报错
+    tunnelServerUrl: '', // 腾讯云信道服务地址 很多文档里写的地址打开直接404
     tunnelSignatureKey: '',
     // 可以注册一个腾讯云账号，获取一下配置。腾讯云相关配置可以查看云 API 秘钥控制台： https://console.cloud.tencent.com/capi
     qcloudAppId: '',
@@ -52,4 +52,7 @@ const CONF = {
     networkTimeout: 30000
 }
 
-module.exports = process.env.NODE_ENV === 'local' ? Object.assign({}, CONF, require('./config.local')) : CONF;
+module.exports =
+    process.env.NODE_ENV === 'local'
+        ? Object.assign({}, CONF, require('./config.local'))
+        : CONF
