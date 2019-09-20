@@ -7,6 +7,18 @@ const { mysql } = require('../qcloud')
 module.exports = async ctx => {
     const { isbn, openid } = ctx.request.body
     if (isbn && openid) {
+        const findRes = await mysql('book')
+            .select()
+            .where('isbn', isbn)
+        if (findRes.length) {
+            ctx.state = {
+                code: -1,
+                data: {
+                    msg: '图书已存在'
+                }
+            }
+            return
+        }
         const url =
             'https://api.jisuapi.com/isbn/query?appkey=bcff48f4476215fd&isbn=' +
             isbn
