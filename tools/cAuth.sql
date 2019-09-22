@@ -50,6 +50,10 @@ DROP TABLE IF EXISTS `book`;
   `summary` varchar(1000) NOT NULL,
   `price` varchar(100) DEFAULT NULL,
   `author` varchar(100) DEFAULT NULL,
+  `language` varchar(50) DEFAULT NULL,
+  `publisher` varchar(100) DEFAULT NULL,
+  `pubplace` varchar(100) DEFAULT NULL,
+  `keyword` varchar(1000) DEFAULT NULL,
   `count` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;

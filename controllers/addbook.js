@@ -23,14 +23,18 @@ module.exports = async ctx => {
             'https://api.jisuapi.com/isbn/query?appkey=bcff48f4476215fd&isbn=' +
             isbn
         const bookinfo = await getJSON(url)
-        const { title, pic, summary, author, price } = bookinfo
+        const { title, pic, summary, author, price, language, publisher, pubplace, keyword } = bookinfo
         try {
             await mysql('book').insert({
-                title,
-                pic,
-                summary,
-                author,
-                price,
+                title, // 标题
+                pic, // 图片
+                summary, // 简介
+                author, // 作者
+                price, // 价格
+                language,
+                publisher,
+                pubplace,
+                keyword,
                 isbn,
                 openid
             })

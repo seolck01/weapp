@@ -4,20 +4,18 @@ module.exports = async ctx => {
     let { openid, page } = ctx.request.query
     page = Number(page)
     const size = 6
-    if (openid) {
-        let booklist = await getBooklist(openid, page, size)
-        const max = await mysql('book').count('id')
-        const maxPage = max[0]['count(`id`)']
-        if (!page) {
-            page = 1
-        }
-        ctx.state = {
-            data: {
-                data: booklist,
-                total: maxPage,
-                maxPage: Math.round(maxPage / size),
-                currentPage: page
-            }
+    let booklist = await getBooklist(openid, page, size)
+    const max = await mysql('book').count('id')
+    const maxPage = max[0]['count(`id`)']
+    if (!page) {
+        page = 1
+    }
+    ctx.state = {
+        data: {
+            data: booklist,
+            total: maxPage,
+            maxPage: Math.round(maxPage / size),
+            currentPage: page
         }
     }
 }
