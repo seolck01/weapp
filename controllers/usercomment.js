@@ -5,9 +5,9 @@ module.exports = async ctx => {
     // console.log(openid)
     if (openid) {
         const usercomment = await mysql('comments')
-            // .select('comments.*', 'cSessioninfo.user_info')
-            .select('comments.*', 'cSessioninfo.user_info', 'book.*')
-            .join('cSessioninfo', 'comments.openid', 'cSessioninfo.open_id')
+            // .select('comments.*', 'cSessionInfo.user_info')
+            .select('comments.*', 'cSessionInfo.user_info', 'book.*')
+            .join('cSessionInfo', 'comments.openid', 'cSessionInfo.open_id')
             .join('book', 'comments.bookid', 'book.id')
             .where('comments.openid', openid)
         // console.log(usercomment)

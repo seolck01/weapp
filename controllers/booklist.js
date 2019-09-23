@@ -1,10 +1,10 @@
 const { mysql } = require('../qcloud')
 
 module.exports = async ctx => {
-    let { openid, page } = ctx.request.query
+    let { page } = ctx.request.query
     page = Number(page)
     const size = 6
-    let booklist = await getBooklist(openid, page, size)
+    let booklist = await getBooklist(page, size)
     const max = await mysql('book').count('id')
     const maxPage = max[0]['count(`id`)']
     if (!page) {
@@ -22,8 +22,8 @@ module.exports = async ctx => {
 
 async function getBooklist (openid, page, size) {
     const booklist = await mysql('book')
-        .select('book.*', 'cSessioninfo.user_info') // 查两个表
-        .join('cSessioninfo', 'book.openid', 'cSessioninfo.open_id') // 联表查询
+        .select('book.*', 'cSessionInfo.user_info') // 查两个表
+        .join('cSessionInfo', 'book.openid', 'cSessionInfo.open_id') // 联表查询
         .limit(size) // 限制数据量
         .offset((page - 1) * size) // 偏移量
         .orderBy('book.id') // 排序

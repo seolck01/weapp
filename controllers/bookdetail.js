@@ -7,8 +7,8 @@ module.exports = async ctx => {
             .where('id', id)
             .increment('count', 1)
         const bookDetail = await mysql('book')
-            .select('book.*', 'cSessioninfo.user_info')
-            .join('cSessioninfo', 'book.openid', 'cSessioninfo.open_id')
+            .select('book.*', 'cSessionInfo.user_info')
+            .join('cSessionInfo', 'book.openid', 'cSessionInfo.open_id')
             .where('id', id)
             .first()
         bookDetail.user_info = {
