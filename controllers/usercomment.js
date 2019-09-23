@@ -2,7 +2,7 @@ const { mysql } = require('../qcloud')
 
 module.exports = async ctx => {
     let { openid } = ctx.request.body
-    console.log(openid)
+    // console.log(openid)
     if (openid) {
         const usercomment = await mysql('comments')
             // .select('comments.*', 'cSessioninfo.user_info')
@@ -10,7 +10,7 @@ module.exports = async ctx => {
             .join('cSessioninfo', 'comments.openid', 'cSessioninfo.open_id')
             .join('book', 'comments.bookid', 'book.id')
             .where('comments.openid', openid)
-        console.log(usercomment)
+        // console.log(usercomment)
         let parseUserComment = usercomment.map(v => {
             const userInfo = JSON.parse(v.user_info)
             return Object.assign({}, v, {

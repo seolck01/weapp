@@ -15,7 +15,7 @@ module.exports = async ctx => {
         const book = await mysql('comments')
             .select('*')
             .where('bookid', bookid)
-        console.log(book)
+        // console.log(book)
 
         const userOpenid = book.filter(v => {
             if (v.openid === openid) {
