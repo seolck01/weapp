@@ -45,4 +45,13 @@ router.get('/bookdetail', controllers.bookdetail)
 
 // 轮播图
 router.get('/top', controllers.top)
+
+// 添加评论
+router.post('/addcomment', controllers.addcomment)
+
+// 获取文章评论
+router.get('/commentlist', controllers.commentlist)
+
+// 获取用户评论
+router.post('/usercomment', controllers.usercomment)
 module.exports = router
