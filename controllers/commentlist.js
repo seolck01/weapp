@@ -7,7 +7,7 @@ module.exports = async ctx => {
             .select('comments.*', 'cSessioninfo.user_info')
             .join('cSessioninfo', 'comments.openid', 'cSessioninfo.open_id')
             .where('bookid', bookid)
-        let jsonCommentList = commentlist.map(v => {
+        let parseCommentList = commentlist.map(v => {
             const userInfo = JSON.parse(v.user_info)
             return Object.assign({}, v, {
                 user_info: {
@@ -16,6 +16,6 @@ module.exports = async ctx => {
                 }
             })
         })
-        ctx.state.data = jsonCommentList
+        ctx.state.data = parseCommentList
     }
 }
